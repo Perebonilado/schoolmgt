@@ -9,13 +9,22 @@ function createSchool (schoolName) {
 
     school.getAllStudents = () => school.students
 
-    school.registerStudents = (student) => school.students.push(student)
+    school.registerStudent = (
+        firstName, 
+        lastName, 
+        middleName, 
+        schoolName, 
+        prevClass, 
+        grade, 
+        position, 
+        stateOfOrigin, 
+        residentialAddress,
+        matricNumber
+        ) => school.students.push({name: {firstName, lastName, middleName}, previousSchool: {schoolName, prevClass, grade, position}, bioData: {stateOfOrigin, residentialAddress}, matricNumber})
 
     school.deleteStudent = (matricNumber) => {school.students = school.students.filter((student)=>student.matricNumber !== matricNumber)}
 
     school.getStudent = (matricNumber) =>  school.students.filter((student)=>student.matricNumber === matricNumber)[0]
-
-    school.deleteStudent = (matricNumber) => {school.students = school.students.filter((student)=>student.matricNumber !== matricNumber)}
 
     school.updateStudent = (matricNumber, newStudentData) => {school.students = school.students.map((student)=>student.matricNumber === matricNumber ? newStudentData: student)}
 
@@ -23,17 +32,13 @@ function createSchool (schoolName) {
 }
 
 const ui = new createSchool('ui')
-ui.registerStudents({
-    name: 'Mark',
-    matricNumber: 192289
-})
-ui.registerStudents({
-    name: 'Jane',
-    matricNumber: 192286
-})
-
-ui.updateStudent(192286, {name: 'Mary', matricNumber: 192286})
+const newStudent = ui.registerStudent('Perebonilado', 'Eradiri', 'Richard', 'Greenoak', 'grade12', 'A+', '1st','Bayelsa', 'Opolo, Bayelsa', 192289)
+const anotherNewStudent = ui.registerStudent('James', 'Patrick', 'Johnson', 'Loyola', 'grade12', 'A+', '2nd','Rivers', 'Ada george', 193367)
+const uiStudents = ui.getAllStudents()
+const student = ui.getStudent(193367)
 
 
 console.log(ui)
+console.log(uiStudents)
+console.log(student)
 
