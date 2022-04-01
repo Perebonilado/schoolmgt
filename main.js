@@ -1,47 +1,25 @@
 
-// class createSchool {
-//     constructor(schoolName){
-//         this.schoolName = schoolName;
-//         this.students = []
-//     };
-
-//     registerStudent = (newStudent) => {
-//         this.students.push(newStudent)
-//     };
-
-//     getAllStudents = () => this.students;
-
-    // getStudent = (matricNumber) => {
-    //     return this.students.filter((student)=>student.matricNumber === matricNumber)[0]
-    // };
-
-    // deleteStudent = (matricNumber) => {
-    //     this.students = this.students.filter((student)=>student.matricNumber !== matricNumber)
-    // };
-
-    // updateStudent = (matricNumber, newFirstName) => {
-    //    this.students = this.students.map((student)=>student.matricNumber === matricNumber ? {...student, firstName: newFirstName} : student)
-    // }
-
-// }
 
 function createSchool (schoolName) {
-    
-    this.schoolName = schoolName
-    this.students = []
-    this.getAllStudents = () => this.students
-    this.registerStudents = (student) => this.students.push(student)
-    this.deleteStudent = (matricNumber) => {this.students = this.students.filter((student)=>student.matricNumber !== matricNumber)}
-    this.getStudent = (matricNumber) => {
-        return this.students.filter((student)=>student.matricNumber === matricNumber)[0]
-    }
-    this.deleteStudent = (matricNumber) => {
-        this.students = this.students.filter((student)=>student.matricNumber !== matricNumber)
-    }
-    this.updateStudent = (matricNumber, newStudentData) => {
-        this.students = this.students.map((student)=>student.matricNumber === matricNumber ? newStudentData: student)
-     }
 
+    const school = new Object
+    school.schoolName = schoolName
+
+    school.students = []
+
+    school.getAllStudents = () => school.students
+
+    school.registerStudents = (student) => school.students.push(student)
+
+    school.deleteStudent = (matricNumber) => {school.students = school.students.filter((student)=>student.matricNumber !== matricNumber)}
+
+    school.getStudent = (matricNumber) =>  school.students.filter((student)=>student.matricNumber === matricNumber)[0]
+
+    school.deleteStudent = (matricNumber) => {school.students = school.students.filter((student)=>student.matricNumber !== matricNumber)}
+
+    school.updateStudent = (matricNumber, newStudentData) => {school.students = school.students.map((student)=>student.matricNumber === matricNumber ? newStudentData: student)}
+
+    return Object.seal(school)
 }
 
 const ui = new createSchool('ui')
@@ -57,5 +35,5 @@ ui.registerStudents({
 ui.updateStudent(192286, {name: 'Mary', matricNumber: 192286})
 
 
-console.log(ui.getStudent(192286))
+console.log(ui)
 
