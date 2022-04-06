@@ -9,18 +9,7 @@ function createSchool (schoolName) {
 
     school.getAllStudents = () => school.students
 
-    school.registerStudent = (
-        firstName, 
-        lastName, 
-        middleName, 
-        schoolName, 
-        prevClass, 
-        grade, 
-        position, 
-        stateOfOrigin, 
-        residentialAddress,
-        matricNumber
-        ) => school.students.push({name: {firstName, lastName, middleName}, previousSchool: {schoolName, prevClass, grade, position}, bioData: {stateOfOrigin, residentialAddress}, matricNumber})
+    school.registerStudent = (student) => school.students.push({name: {firstName:student.firstName, lastName:student.lastName, middleName: student.middleName}, previousSchool: {schoolName: student.schoolName, prevClass: student.prevClass, grade: student.grade, position:student.position}, bioData: {stateOfOrigin: student.stateOfOrigin, residentialAddress: student.residentialAddress}, matricNumber: student.matricNumber})
 
     school.deleteStudent = (matricNumber) => {school.students = school.students.filter((student)=>student.matricNumber !== matricNumber)}
 
@@ -32,13 +21,35 @@ function createSchool (schoolName) {
 }
 
 const ui = new createSchool('ui')
-const newStudent = ui.registerStudent('Perebonilado', 'Eradiri', 'Richard', 'Greenoak', 'grade12', 'A+', '1st','Bayelsa', 'Opolo, Bayelsa', 192289)
-const anotherNewStudent = ui.registerStudent('James', 'Patrick', 'Johnson', 'Loyola', 'grade12', 'A+', '2nd','Rivers', 'Ada george', 193367)
-const uiStudents = ui.getAllStudents()
-const student = ui.getStudent(193367)
 
 
-console.log(ui)
-console.log(uiStudents)
-console.log(student)
+const Tunde = {
+    firstName: 'Tunde',
+    lastName: 'Remi',
+    middleName: 'Martin',
+    schoolName: 'PolyIbadan',
+    prevClass: '2nd year',
+    grade: '1st class honors',
+    position: '1st',
+    stateOfOrigin: 'Ekiti',
+    residentialAddress: 'Gbagada, Lagos',
+    matricNumber: 19902
+}
 
+const Bisi = {
+    firstName: 'Adebisi',
+    lastName: 'Adebayo',
+    middleName: 'Amelia',
+    schoolName: 'Yabatech',
+    prevClass: 'final year',
+    grade: '1st class honors',
+    position: '1st',
+    stateOfOrigin: 'Lagos',
+    residentialAddress: 'lekki, Lagos',
+    matricNumber: 19903
+}
+
+ui.registerStudent(Tunde)
+ui.registerStudent(Bisi)
+ui.updateStudent(19903, {...Bisi, matricNumber: 192289})
+console.log(ui.getStudent(192289))
